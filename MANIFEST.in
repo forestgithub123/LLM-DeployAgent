@@ -1,0 +1,5 @@
+include README.md
+include THIRD_PARTY_NOTICES.md
+recursive-include src/data *.json
+recursive-include evaluation *.py *.md *.csv
+recursive-include evaluation/model_configs *.json

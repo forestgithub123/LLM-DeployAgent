@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+outputs/
+agent_trace.json
+build/
+dist/
+*.egg-info/
+
+# Documents excluded from the GitHub upload
+*.doc
+*.docx
+*.pdf
+*.DOC
+*.DOCX
+*.PDF
+
+# macOS metadata
+.DS_Store

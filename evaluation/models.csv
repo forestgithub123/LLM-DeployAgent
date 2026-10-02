@@ -1,0 +1,6 @@
+model_id,huggingface_id,config_path,architecture_scope,config_url
+qwen2.5-1.5b-instruct,Qwen/Qwen2.5-1.5B-Instruct,src/data/Qwen/Qwen2.5-1.5B-Instruct.json,dense GQA full attention,https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json
+qwen2.5-3b-instruct,Qwen/Qwen2.5-3B-Instruct,src/data/Qwen/Qwen2.5-3B-Instruct.json,dense GQA full attention,https://huggingface.co/Qwen/Qwen2.5-3B-Instruct/resolve/main/config.json
+qwen2.5-7b-instruct,Qwen/Qwen2.5-7B-Instruct,src/data/Qwen/Qwen2.5-7B-Instruct.json,dense GQA full attention,https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json
+qwen2.5-14b-instruct,Qwen/Qwen2.5-14B-Instruct,src/data/Qwen/Qwen2.5-14B-Instruct.json,dense GQA full attention,https://huggingface.co/Qwen/Qwen2.5-14B-Instruct/resolve/main/config.json
+qwen2.5-32b-instruct,Qwen/Qwen2.5-32B-Instruct,src/data/Qwen/Qwen2.5-32B-Instruct.json,dense GQA full attention,https://huggingface.co/Qwen/Qwen2.5-32B-Instruct/resolve/main/config.json

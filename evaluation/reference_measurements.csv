@@ -1,0 +1,1 @@
+model_id,system,total_gpus,precision,kv_precision,isl,osl,prefix,ttft_ms,tpot_ms,measured_output_tokens_s_per_gpu,measured_ttft_ms,measured_tpot_ms,serving_stack,stack_version,measured_mode,measured_tp,measured_pp,measured_dp,source_url

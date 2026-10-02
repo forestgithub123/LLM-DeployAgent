@@ -1,0 +1,71 @@
+# LLM-DeployAgent user configuration
+# Edit this file, save it, then run: python run.py
+# No API key is stored here. For live mode, set OPENAI_API_KEY or OPENROUTER_API_KEY
+# in your shell environment; for scripted mode, no key or OpenAI SDK is needed.
+
+[run]
+# "scripted": transparent deterministic workflow with printed tool-by-tool steps; no API call.
+# "live": an LLM chooses tools/search regions and explains the measured tool results.
+mode = "live"
+
+# Artifacts are written relative to this config file. Re-running overwrites these three files.
+output_dir = "outputs/live"
+json = false
+
+[input]
+# Path to the target model's Hugging Face config.json (architecture only; do not download weights).
+# Put the downloaded architecture file under src/data/, then set its path relative to this project.
+# Example: "src/data/qwen3-32b/config.json"
+model_path = "src/data/Qwen/Qwen3.8-27B.json"
+
+# GPU system and the maximum available GPU budget. Supported examples: h200_sxm, H200, H20, H800, PRO5000.
+total_gpus = 4
+system = "h200_sxm"
+
+# Workload: input/output sequence lengths and cached prefix length, in tokens.
+# prefix must be >= 0 and < isl; fully cached prompts are not modeled.
+isl = 4000
+osl = 500
+prefix = 500
+
+# Service-level targets, in milliseconds.
+ttft = 300.0
+tpot = 30.0
+
+# Model weight and KV-cache data types. Supported values: "fp8" or "bf16".
+precision = "fp8"
+kv_precision = "fp8"
+
+# Allowed planner search space. TP/PP are per worker; EP is fixed to 1 for supported dense models.
+tp_sizes = [1, 2, 4, 8]
+pp_sizes = [1, 2, 4]
+batch_sizes = [1, 2, 4, 8, 16, 28, 32, 68, 120]
+prefill_batch_sizes = [1, 2, 4]
+worker_counts = [1, 2, 4]
+
+# Optional hardware/modeling assumptions. Remove/comment to use hardware defaults where supported.
+gpus_per_node = 8
+memory_fraction = 0.9
+workspace_gb = 4.0
+# mfu = 0.35                # Effective model FLOPs utilization, range (0, 1]; default is GPU-profile value.
+# scheduler_ms = 0.2        # Scheduler overhead assumption per stage call (ms).
+# collective_latency_us = 5.0
+# kv_transfer_gbps = 400.0  # Effective KV transfer bandwidth; default is GPU-profile value.
+top_k = 3
+
+[agent]
+# Scripted mode deterministically samples up to this many candidates for each of agg and disagg.
+scripted_candidates_per_mode = 12
+
+# Settings used only by live mode.
+provider = "auto"          # auto, openai, openrouter, or chat-compatible provider
+model = "gpt-4.1-mini"     # LLM used to plan; this is NOT the target inference model above.
+# base_url = "https://openrouter.ai/api/v1"  # Optional; auto-detected for an sk-or-v1 key.
+max_turns = 16
+max_evaluations = 2048
+max_output_tokens = 6000
+max_total_tokens = 150000
+timeout_seconds = 60.0
+# Optional cost estimate; leave unset to report tokens without estimated USD cost.
+# input_usd_per_million = 0.40
+# output_usd_per_million = 1.60
